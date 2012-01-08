@@ -113,9 +113,9 @@ Class ViiIrcBot {
              * Bot configuration for information
              */
              
-            'nickname' => 'Muts4',
+            'nickname' => 'Muts',
             'realname' => 'Vii\'s personal funbot',
-            'ident'    => 'Muts4',
+            'ident'    => 'Muts',
             
             /**
              * Bot server configration
@@ -129,19 +129,19 @@ Class ViiIrcBot {
              * Other bot configuration
              */
              
-            'serverpath'  => '/home/patrick/domains/noxxie.nl/public_html/muts/',
-            'logpath'     => '/home/patrick/domains/noxxie.nl/public_html/muts/logs/',
-            'classpath'   => '/home/patrick/domains/noxxie.nl/public_html/muts/classes/',
-            'modulepath'  => '/home/patrick/domains/noxxie.nl/public_html/muts/modules/',
+            'serverpath'  => '/home/xxx/public_html/muts/',
+            'logpath'     => '/home/xxx/public_html/muts/logs/',
+            'classpath'   => '/home/xxx/public_html/muts/classes/',
+            'modulepath'  => '/home/xxx/public_html/muts/modules/',
 
             /**
              * MySQL Database configuration
              */
              
              'dbhtname'   => 'localhost',
-             'username'   => 'patrick_muts',
-             'password'   => 'Muts43Muts21',
-             'database'   => 'patrick_muts'                                                                             
+             'username'   => '',
+             'password'   => '',
+             'database'   => ''                                                                             
         );
          
          /**
