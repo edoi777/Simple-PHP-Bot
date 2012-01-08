@@ -113,9 +113,9 @@ Class ViiIrcBot {
              * Bot configuration for information
              */
              
-            'nickname' => 'Muts3',
+            'nickname' => 'Muts4',
             'realname' => 'Vii\'s personal funbot',
-            'ident'    => 'Muts3',
+            'ident'    => 'Muts4',
             
             /**
              * Bot server configration
@@ -129,19 +129,19 @@ Class ViiIrcBot {
              * Other bot configuration
              */
              
-            'serverpath'  => '/home/xxxxx/public_html/ircbot/',
-            'logpath'     => '/home/xxxxx/public_html/ircbot/logs/',
-            'classpath'   => '/home/xxxxx/public_html/ircbot/classes/',
-            'modulepath'  => '/home/xxxxx/public_html/ircbot/modules/',
+            'serverpath'  => '/home/patrick/domains/noxxie.nl/public_html/muts/',
+            'logpath'     => '/home/patrick/domains/noxxie.nl/public_html/muts/logs/',
+            'classpath'   => '/home/patrick/domains/noxxie.nl/public_html/muts/classes/',
+            'modulepath'  => '/home/patrick/domains/noxxie.nl/public_html/muts/modules/',
 
             /**
              * MySQL Database configuration
              */
              
-             'dbhtname'   => '',
-             'username'   => '',
-             'password'   => '',
-             'database'   => ''                                                                             
+             'dbhtname'   => 'localhost',
+             'username'   => 'patrick_muts',
+             'password'   => 'Muts43Muts21',
+             'database'   => 'patrick_muts'                                                                             
         );
          
          /**
@@ -314,7 +314,7 @@ Class ViiIrcBot {
     
     protected function BotMainLoop () {
         $LogFile = fopen($this->BotConfig['logpath'] . 'log' . date('d-m-Y') . '.txt', 'a+' );
-        
+
         while($this->BotData = socket_read($this->BotSocket,65000,PHP_NORMAL_READ)) { 
             
             /**
@@ -344,6 +344,10 @@ Class ViiIrcBot {
     
     public function PrivateMessage ($Location, $Message) {
         $this->RawWrite('PRIVMSG ' . $Location . ' :' . $Message);
+    }
+	
+	public function NoticeMessage ($Location, $Message) {
+        $this->RawWrite('NOTICE ' . $Location . ' :' . $Message);
     }
 }
 
