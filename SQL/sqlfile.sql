@@ -7,7 +7,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 CREATE TABLE IF NOT EXISTS `accounts` (
   `account_id` bigint(11) NOT NULL auto_increment,
   `account_name` varchar(100) NOT NULL,
-  `account_security_clearence` int(11) NOT NULL,
+  `account_security_clearance` int(11) NOT NULL,
   `account_online_time` varchar(250) NOT NULL,
   PRIMARY KEY  (`account_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -34,8 +34,8 @@ CREATE TABLE IF NOT EXISTS `commands` (
   `cmd_name` varchar(50) NOT NULL,
   `cmd_class` varchar(100) NOT NULL,
   `cmd_class_function` varchar(100) NOT NULL,
-  `cmd_security_clearence` int(11) NOT NULL default '0',
-  `cmd_channel_clearence` int(11) NOT NULL,
+  `cmd_security_clearance` int(11) NOT NULL default '0',
+  `cmd_channel_clearance` int(11) NOT NULL,
   `cmd_added` timestamp NOT NULL default CURRENT_TIMESTAMP,
   PRIMARY KEY  (`cmd_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `commands` (
 -- Gegevens worden uitgevoerd voor tabel `commands`
 --
 
-INSERT INTO `commands` (`cmd_id`, `cmd_alias`, `cmd_name`, `cmd_class`, `cmd_class_function`, `cmd_security_clearence`, `cmd_channel_clearence`, `cmd_added`) VALUES
+INSERT INTO `commands` (`cmd_id`, `cmd_alias`, `cmd_name`, `cmd_class`, `cmd_class_function`, `cmd_security_clearance`, `cmd_channel_clearance`, `cmd_added`) VALUES
 (1, '2', '!test', '', '', 0, 0, '2010-11-29 12:40:15'),
 (2, '0', '!Hello', 'HelloWorld', 'core', 700, 0, '2010-11-29 13:03:40'),
 (3, '0', '!hug', 'HelloWorld', 'hug', 0, 0, '2010-11-29 19:17:13'),
@@ -53,9 +53,9 @@ INSERT INTO `commands` (`cmd_id`, `cmd_alias`, `cmd_name`, `cmd_class`, `cmd_cla
 (6, '0', '!unloadmodule', 'Modules', 'CmdUnloadModule', 900, 0, '2010-11-29 19:31:31'),
 (7, '3', '!knuf', '', '', 0, 0, '2010-12-06 16:52:02'),
 (8, '0', '!kill', 'HelloWorld', 'FunKill', 100, 0, '2010-12-06 17:34:30'),
-(9, '0', '!clearence', 'HelloWorld', 'UserAccess', 0, 0, '2010-12-13 22:13:59'),
+(9, '0', '!clearance', 'HelloWorld', 'UserAccess', 0, 0, '2010-12-13 22:13:59'),
 (10, '0', '!raw', 'Basics', 'DoRawLine', 1000, 0, '2010-12-13 22:40:46'),
-(11, '0', '!adduser', 'ChannelClearence', 'AddUserClearence', 0, 300, '2010-12-14 20:30:02');
+(11, '0', '!adduser', 'ChannelClearance', 'AddUserClearance', 0, 300, '2010-12-14 20:30:02');
 
 -- --------------------------------------------------------
 
@@ -102,6 +102,6 @@ CREATE TABLE IF NOT EXISTS `userlists` (
   `userlist_id` int(11) NOT NULL auto_increment,
   `userlist_channel_id` int(11) NOT NULL,
   `userlist_auth_id` int(11) NOT NULL,
-  `userlist_clearence` int(11) NOT NULL,
+  `userlist_clearance` int(11) NOT NULL,
   PRIMARY KEY  (`userlist_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
