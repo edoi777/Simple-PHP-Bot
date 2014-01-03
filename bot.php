@@ -61,11 +61,11 @@ Class ViiIrcBot {
     public $ModuleSystem;
     
     /**
-     * @param $SecurityClearence
+     * @param $SecurityClearance
      * @usage Holding the class of the security handler
      */
      
-    public $SecurityClearence;
+    public $SecurityClearance;
     
     /**
      * @param $Basics
@@ -162,13 +162,13 @@ Class ViiIrcBot {
           include_once($this->BotConfig['classpath'] . 'class.Modules.php');
           include_once($this->BotConfig['classpath'] . 'class.CommandHandler.php');
           include_once($this->BotConfig['classpath'] . 'class.NickHandler.php');
-          include_once($this->BotConfig['classpath'] . 'class.SecurityClearence.php');
+          include_once($this->BotConfig['classpath'] . 'class.SecurityClearance.php');
           include_once($this->BotConfig['classpath'] . 'class.Basics.php');
           
           $this->ModuleSystem = new Modules($this);
           $this->CommandHandler = new CommandHandler($this);
           $this->NickHandler = new NickHandler($this);
-          $this->SecurityClearence = new SecurityClearence($this);
+          $this->SecurityClearance = new SecurityClearance($this);
           $this->Basics = new Basics($this);
           
           $this->ModuleSystem->LoadModule($this, 'Modules');

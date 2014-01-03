@@ -7,10 +7,10 @@
 
  */
 
-class ChannelClearence {
-    public function AddUserClearence($Parent, $Args = null) {
+class ChannelClearance {
+    public function AddUserClearance($Parent, $Args = null) {
         if ($this->is_channel($Args[1])) {
-            if ($Parent->SecurityClearence->HasChannelClearence($Parent, 'AddUserClearence', 'chan', $Parent->Parameter['hostmask']['nickname'], $Parent->Parameter['location'])) {
+            if ($Parent->SecurityClearance->HasChannelClearance($Parent, 'AddUserClearance', 'chan', $Parent->Parameter['hostmask']['nickname'], $Parent->Parameter['location'])) {
                 
             }
             else {

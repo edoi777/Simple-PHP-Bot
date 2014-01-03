@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * @author Patrick Rennings
@@ -13,7 +13,7 @@
 class HelloWorld {
     
     public function core($Parent, $Args = null) {
-        if (!$Parent->SecurityClearence->HasSecurityClearence($Parent, 'core', 'oper', $Parent->Parameter['hostmask']['nickname'])) {
+        if (!$Parent->SecurityClearance->HasSecurityClearance($Parent, 'core', 'oper', $Parent->Parameter['hostmask']['nickname'])) {
             $Parent->PrivateMessage($Parent->Parameter['location'], 'Not enough access.');
         }
         else {
@@ -22,7 +22,7 @@ class HelloWorld {
     }
     
     public function hug($Parent, $Args = null) {
-         if (!$Parent->SecurityClearence->HasChannelClearence($Parent, 'hug', 'chan', $Parent->Parameter['hostmask']['nickname'], $Parent->Parameter['location'])) {
+         if (!$Parent->SecurityClearance->HasChannelClearance($Parent, 'hug', 'chan', $Parent->Parameter['hostmask']['nickname'], $Parent->Parameter['location'])) {
             $Parent->PrivateMessage($Parent->Parameter['location'], 'Not enough access.');   
         }
         else {
@@ -47,11 +47,11 @@ class HelloWorld {
     public function UserAccess($Parent, $Args = null) {
         if ($Args[1]) {
             $Parent->PrivateMessage($Parent->Parameter['location'], 'The user ' . trim($Args[1]) . ' has an security clearence of: ' 
-            . $Parent->SecurityClearence->GetClearenceOfUser($Parent, trim($Args[1])));
+            . $Parent->SecurityClearance->GetClearanceOfUser($Parent, trim($Args[1])));
         }
         else {
             $Parent->PrivateMessage($Parent->Parameter['location'], 'Security clearence of: ' 
-            . $Parent->SecurityClearence->GetClearenceOfUser($Parent, $Parent->Parameter['hostmask']['nickname']));
+            . $Parent->SecurityClearance->GetClearanceOfUser($Parent, $Parent->Parameter['hostmask']['nickname']));
         }
     }
 }

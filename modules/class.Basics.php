@@ -9,7 +9,7 @@
 
 class Basics {
     public function DoRawLine($Parent, $Args = null) {
-         if (!$Parent->SecurityClearence->HasSecurityClearence($Parent, 'DoRawLine', 'oper', $Parent->Parameter['hostmask']['nickname'], $Parent->Parameter['location'])) {
+         if (!$Parent->SecurityClearance->HasSecurityClearance($Parent, 'DoRawLine', 'oper', $Parent->Parameter['hostmask']['nickname'], $Parent->Parameter['location'])) {
             $Parent->PrivateMessage($Parent->Parameter['location'], 'Not enough access.');   
         }
         else {

@@ -21,7 +21,7 @@ class Modules {
      */
      
     public function CmdLoadModule ($Parent, $Args = null) {
-        if ($Parent->SecurityClearence->HasSecurityClearence($Parent, 'CmdLoadModule', 'oper', $Parent->Parameter['hostmask']['nickname'])) {
+        if ($Parent->SecurityClearance->HasSecurityClearance($Parent, 'CmdLoadModule', 'oper', $Parent->Parameter['hostmask']['nickname'])) {
             if (empty($Args[1])) {
                 $Parent->PrivateMessage($Parent->Parameter['location'], 'Please enter an module name.');
             }
@@ -43,7 +43,7 @@ class Modules {
      */
      
     public function CmdReloadModule ($Parent, $Args = null) {
-        if ($Parent->SecurityClearence->HasSecurityClearence($Parent, 'CmdReloadModule', 'oper', $Parent->Parameter['hostmask']['nickname'])) {
+        if ($Parent->SecurityClearance->HasSecurityClearance($Parent, 'CmdReloadModule', 'oper', $Parent->Parameter['hostmask']['nickname'])) {
             if (empty($Args[1])) {
                 $Parent->PrivateMessage($Parent->Parameter['location'], 'Please enter an module name.');
             }
@@ -66,7 +66,7 @@ class Modules {
      */
      
     public function CmdUnloadModule ($Parent, $Args = null) {
-        if ($Parent->SecurityClearence->HasSecurityClearence($Parent, 'CmdUnloadModule', 'oper', $Parent->Parameter['hostmask']['nickname'])) {
+        if ($Parent->SecurityClearance->HasSecurityClearance($Parent, 'CmdUnloadModule', 'oper', $Parent->Parameter['hostmask']['nickname'])) {
             if (empty($Args[1])) {
                 $Parent->PrivateMessage($Parent->Parameter['location'], 'Please enter an module name.');
             }

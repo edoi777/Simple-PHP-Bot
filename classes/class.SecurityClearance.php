@@ -1,7 +1,7 @@
 <?php
 
 /**
- * SecurityClearence
+ * SecurityClearance
  * 
  * @package IRCBot
  * @author Patrick Rennings
@@ -10,10 +10,10 @@
  * @access public
  */
  
-class SecurityClearence {
+class SecurityClearance {
     
     /**
-     * SecurityClearence::CheckClearence()
+     * SecurityClearance::CheckClearance()
      * 
      * @param object $Parent
      * @param string $Command
@@ -22,7 +22,7 @@ class SecurityClearence {
      * @return boolean
      */
      
-    protected function CheckClearence ($Parent, $Command, $Level, $Channel = null) {
+    protected function CheckClearance ($Parent, $Command, $Level, $Channel = null) {
         if (!is_string($Command) OR !is_string($Level)) {
             return false;
         }
@@ -31,13 +31,13 @@ class SecurityClearence {
             $Command = mysql_real_escape_string($Command);
             
             if ($Level == 'oper') {
-                return $this->CheckClearenceOper($Parent, $Command);
+                return $this->CheckClearanceOper($Parent, $Command);
             }
             elseif ($Level == 'chan') {
-                return $this->CheckClearenceChannel($Parent, $Command, $Channel);
+                return $this->CheckClearanceChannel($Parent, $Command, $Channel);
             }
             else {
-                return $this->CheckClearenceChannel($Parent, $Command);
+                return $this->CheckClearanceChannel($Parent, $Command);
             }
         }
     }
@@ -47,14 +47,14 @@ class SecurityClearence {
     
     
     /**
-     * SecurityClearence::GetClearenceOfUser()
+     * SecurityClearance::GetClearanceOfUser()
      * 
      * @param object $Parent
      * @param string $NickName
      * @return integer
      */
      
-    public function GetClearenceOfUser ($Parent, $NickName) {
+    public function GetClearanceOfUser ($Parent, $NickName) {
         $GetAuthId = mysql_query('SELECT nick_nickname, nick_auth_id FROM nicknames
                                   WHERE nick_nickname = "' . $NickName . '"');
                                   
@@ -62,12 +62,12 @@ class SecurityClearence {
                                   
             $GetAuthFetch = mysql_fetch_assoc($GetAuthId);
             
-            $GetClearence = mysql_query('SELECT account_id, account_security_clearence FROM accounts
+            $GetClearance = mysql_query('SELECT account_id, account_security_clearence FROM accounts
                                          WHERE account_id = "' . $GetAuthFetch['nick_auth_id'] . '"');
             
-            if (mysql_num_rows($GetClearence) > 0) {  
-                $FetchClearence = mysql_fetch_assoc($GetClearence);
-                return (int) $FetchClearence['account_security_clearence'];
+            if (mysql_num_rows($GetClearance) > 0) {  
+                $FetchClearance = mysql_fetch_assoc($GetClearance);
+                return (int) $FetchClearance['account_security_clearence'];
             }
             else {
                 return 0;
@@ -79,21 +79,21 @@ class SecurityClearence {
     }
     
     /**
-     * SecurityClearence::GetChannelClearenceOfUser()
+     * SecurityClearance::GetChannelClearanceOfUser()
      * 
      * @param object $Parent
      * @param string $NickName
      * @param string $Channel
      * @return boolean
      */
-    public function GetChannelClearenceOfUser ($Parent, $NickName, $Channel) {
+    public function GetChannelClearanceOfUser ($Parent, $NickName, $Channel) {
         $GetAuthId = mysql_query('SELECT nick_nickname, nick_auth_id FROM nicknames
                                   WHERE nick_nickname = "' . $NickName . '"');
                                   
         if (mysql_num_rows($GetAuthId) > 0) {
 
             $GetAuthFetch = mysql_fetch_assoc($GetAuthId);
-            $GetClearence = mysql_query('SELECT 
+            $GetClearance = mysql_query('SELECT 
                                              channels.channel_id, 
                                              channels.channel_name, 
                                              userlists.userlist_channel_id,
@@ -110,9 +110,9 @@ class SecurityClearence {
                                          AND
                                             channels.channel_name = "' . mysql_real_escape_string($Channel) . '"');
                                             
-            if (mysql_num_rows($GetClearence) > 0) { 
-                $FetchClearence = mysql_fetch_assoc($GetClearence);
-                return (int) $FetchClearence['userlist_clearence'];
+            if (mysql_num_rows($GetClearance) > 0) { 
+                $FetchClearance = mysql_fetch_assoc($GetClearance);
+                return (int) $FetchClearance['userlist_clearence'];
             }
             else {
                 return 0;
@@ -124,7 +124,7 @@ class SecurityClearence {
     }
     
     /**
-     * SecurityClearence::HasChannelClearence()
+     * SecurityClearance::HasChannelClearance()
      * 
      * @param object $Parent
      * @param string $Command
@@ -134,8 +134,8 @@ class SecurityClearence {
      * @return boolean
      */
      
-    public function HasChannelClearence ($Parent, $Command, $Level, $NickName, $Channel) {
-        if ($this->CheckClearence($Parent, $Command, $Level) > $this->GetChannelClearenceOfUser($Parent, $NickName, $Channel)) {
+    public function HasChannelClearance ($Parent, $Command, $Level, $NickName, $Channel) {
+        if ($this->CheckClearance($Parent, $Command, $Level) > $this->GetChannelClearanceOfUser($Parent, $NickName, $Channel)) {
             return false;
         }
         else {
@@ -144,14 +144,14 @@ class SecurityClearence {
     }
     
     /**
-     * SecurityClearence::CheckClearenceOper()
+     * SecurityClearance::CheckClearanceOper()
      * 
      * @param object $Parent
      * @param string $Command
      * @return integer
      */
      
-    protected function CheckClearenceOper ($Parent, $Command) {
+    protected function CheckClearanceOper ($Parent, $Command) {
         $CmdCheck = mysql_query('SELECT * FROM commands
                                  WHERE cmd_class_function = "' . $Command . '" AND
                                  cmd_security_clearence <> 0');
@@ -166,7 +166,7 @@ class SecurityClearence {
     }
     
     /**
-     * SecurityClearence::CheckClearenceChannel()
+     * SecurityClearance::CheckClearanceChannel()
      * 
      * @param object $Parent
      * @param string $Command
@@ -174,7 +174,7 @@ class SecurityClearence {
      * @return integer
      */
      
-    protected function CheckClearenceChannel ($Parent, $Command, $Channel = null) {
+    protected function CheckClearanceChannel ($Parent, $Command, $Channel = null) {
         // if ($Channel == null) {
         //    return false;
         // }
@@ -195,7 +195,7 @@ class SecurityClearence {
     }
     
     /**
-     * SecurityClearence::HasSecurityClearence()
+     * SecurityClearance::HasSecurityClearance()
      * 
      * @param object $Parent
      * @param string $Command
@@ -204,8 +204,8 @@ class SecurityClearence {
      * @return boolean
      */
      
-    public function HasSecurityClearence ($Parent, $Command, $Level, $NickName) {
-        if ($this->CheckClearence($Parent, $Command, $Level) > $this->GetClearenceOfUser($Parent, $NickName)) {
+    public function HasSecurityClearance ($Parent, $Command, $Level, $NickName) {
+        if ($this->CheckClearance($Parent, $Command, $Level) > $this->GetClearanceOfUser($Parent, $NickName)) {
             return false;
         }
         else {
