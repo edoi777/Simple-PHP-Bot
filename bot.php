@@ -122,26 +122,26 @@ Class ViiIrcBot {
              */
              
             'hostname' => 0,
-            'server'   => 'ogn1.ogamenet.net',
+            'server'   => 'irc.ogamenet.net',
             'port'     => 6667,
             
             /**
              * Other bot configuration
              */
              
-            'serverpath'  => '/home/xxx/public_html/muts/',
-            'logpath'     => '/home/xxx/public_html/muts/logs/',
-            'classpath'   => '/home/xxx/public_html/muts/classes/',
-            'modulepath'  => '/home/xxx/public_html/muts/modules/',
+            'serverpath'  => 'D:/xampp/htdocs/ModularBot/Simple-PHP-Bot/',
+            'logpath'     => 'D:/xampp/htdocs/ModularBot/Simple-PHP-Bot/logs/',
+            'classpath'   => 'D:/xampp/htdocs/ModularBot/Simple-PHP-Bot/classes/',
+            'modulepath'  => 'D:/xampp/htdocs/ModularBot/Simple-PHP-Bot/modules/',
 
             /**
              * MySQL Database configuration
              */
              
              'dbhtname'   => 'localhost',
-             'username'   => '',
+             'username'   => 'root',
              'password'   => '',
-             'database'   => ''                                                                             
+             'database'   => 'ircbot'                                                                             
         );
          
          /**
@@ -313,7 +313,11 @@ Class ViiIrcBot {
      */ 
     
     protected function BotMainLoop () {
-        $LogFile = fopen($this->BotConfig['logpath'] . 'log' . date('d-m-Y') . '.txt', 'a+' );
+        if (!file_exists($this->BotConfig['logpath'] . 'log' . date('d-m-Y') . '.txt')) {
+            $LogFile = fopen($this->BotConfig['logpath'] . 'log' . date('d-m-Y') . '.txt', 'x+' );
+        } else {
+            $LogFile = fopen($this->BotConfig['logpath'] . 'log' . date('d-m-Y') . '.txt', 'a+' );
+        }
 
         while($this->BotData = socket_read($this->BotSocket,65000,PHP_NORMAL_READ)) { 
             
@@ -338,7 +342,9 @@ Class ViiIrcBot {
             $this->CommandHandler->FetchCommand($this);
             $this->Basics->CheckHandling($this);
 
-            $LogWrite = fwrite($LogFile, $this->BotData);                                        
+            if ($this->BotData) {
+                $LogWrite = fwrite($LogFile, $this->BotData);
+            }
         }
     }
     

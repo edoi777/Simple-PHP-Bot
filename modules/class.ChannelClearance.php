@@ -22,7 +22,7 @@ class ChannelClearance {
         }
     }
     
-    protected function is_channel ($Channel) {
+    protected function is_channel($Channel) {
         if (!is_string($Channel)) {
             return false;
         }

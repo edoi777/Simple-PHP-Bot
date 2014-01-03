@@ -30,7 +30,7 @@ class Modules {
             }
         }
         else {
-            $Parent->PrivateMessage($Parent->Parameter['location'], 'Not enough clearence.');
+            $Parent->PrivateMessage($Parent->Parameter['location'], 'Not enough clearance.');
         }
     }
     

@@ -62,12 +62,12 @@ class SecurityClearance {
                                   
             $GetAuthFetch = mysql_fetch_assoc($GetAuthId);
             
-            $GetClearance = mysql_query('SELECT account_id, account_security_clearence FROM accounts
+            $GetClearance = mysql_query('SELECT account_id, account_security_clearance FROM accounts
                                          WHERE account_id = "' . $GetAuthFetch['nick_auth_id'] . '"');
             
             if (mysql_num_rows($GetClearance) > 0) {  
                 $FetchClearance = mysql_fetch_assoc($GetClearance);
-                return (int) $FetchClearance['account_security_clearence'];
+                return (int) $FetchClearance['account_security_clearance'];
             }
             else {
                 return 0;
@@ -98,7 +98,7 @@ class SecurityClearance {
                                              channels.channel_name, 
                                              userlists.userlist_channel_id,
                                              userlists.userlist_auth_id,
-                                             userlists.userlist_clearence
+                                             userlists.userlist_clearance
                                          FROM 
                                             channels
                                          INNER JOIN 
@@ -112,7 +112,7 @@ class SecurityClearance {
                                             
             if (mysql_num_rows($GetClearance) > 0) { 
                 $FetchClearance = mysql_fetch_assoc($GetClearance);
-                return (int) $FetchClearance['userlist_clearence'];
+                return (int) $FetchClearance['userlist_clearance'];
             }
             else {
                 return 0;
@@ -154,11 +154,11 @@ class SecurityClearance {
     protected function CheckClearanceOper ($Parent, $Command) {
         $CmdCheck = mysql_query('SELECT * FROM commands
                                  WHERE cmd_class_function = "' . $Command . '" AND
-                                 cmd_security_clearence <> 0');
+                                 cmd_security_clearance <> 0');
         
         if (mysql_num_rows($CmdCheck) > 0) {
             $CmdFetch = mysql_fetch_assoc($CmdCheck);
-            return (int) $CmdFetch['cmd_security_clearence'];
+            return (int) $CmdFetch['cmd_security_clearance'];
         }
         else {
             return 0;
@@ -181,12 +181,12 @@ class SecurityClearance {
         // else {
             $CmdCheck = mysql_query('SELECT * FROM commands
                                      WHERE cmd_class_function = "' . $Command . '" AND
-                                     cmd_channel_clearence <> 0');
+                                     cmd_channel_clearance <> 0');
             
             if (mysql_num_rows($CmdCheck) > 0) {
                 $CmdFetch = mysql_fetch_assoc($CmdCheck);
                 
-                return (int) $CmdFetch['cmd_channel_clearence'];
+                return (int) $CmdFetch['cmd_channel_clearance'];
             }
             else {
                 return 0;
