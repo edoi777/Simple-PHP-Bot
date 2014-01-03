@@ -26,7 +26,12 @@ class Modules {
                 $Parent->PrivateMessage($Parent->Parameter['location'], 'Please enter an module name.');
             }
             else {
-                $Parent->ModuleSystem->LoadModule($Parent, $Args[1]);
+                if (!$Parent->ModuleSystem->LoadModule($Parent, $Args[1])) {
+                    $Parent->PrivateMessage($Parent->Parameter['location'], 'Module ' . trim($Args[1]) . ' could not be found.');
+                }
+                else {
+                    $Parent->PrivateMessage($Parent->Parameter['location'], 'Module ' . trim($Args[1]) . ' loaded.');
+                }
             }
         }
         else {

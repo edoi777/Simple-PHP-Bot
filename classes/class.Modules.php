@@ -39,7 +39,7 @@ class Modules {
                         
             $ModuleContent = file_get_contents($Parent->BotConfig['modulepath'] . 'class.' . $ModuleName);
             $ModuleContent = preg_replace('@class\s+(\w+)@i','class '. $UniqId, $ModuleContent, 1);
-                        
+            
             eval('?>' . $ModuleContent);
                         
             $ModuleName = substr($ModuleName, 0, -4);
