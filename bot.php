@@ -280,16 +280,6 @@ Class ViiIrcBot {
     
     protected function DefineRawLine($RawLine) {
         $this->Parameter['hostmask'] = $RawLine[0];
-        $this->Parameter['servercmd'] = $RawLine[1];
-        
-        if ($RawLine[2] != '') {
-            $this->Parameter['location'] = $RawLine[2];
-            $this->Parameter['command'] = trim(substr($RawLine[3], 1));
-        }
-        if (!empty($this->Parameter['command'])) {
-            $ExplodingPar = explode($RawLine[3], $this->BotData);
-            $this->Parameter['parameters'] = $ExplodingPar[1];
-        }
         
         /**
          * Splitting hostmask for usable things
@@ -305,6 +295,29 @@ Class ViiIrcBot {
             $this->Parameter['hostmask']['ident'] = $HostArray[2];
             $this->Parameter['hostmask']['banmask'] = '*!*@' . $HostArray[3];
          }
+         
+          $this->Parameter['servercmd'] = $RawLine[1];
+        
+        if ($RawLine[2] != '') {
+            
+            if ($RawLine[2][0] != '#' && !empty($this->Parameter['hostmask']['nickname'])) {
+                $this->Parameter['location'] = $this->Parameter['hostmask']['nickname'];
+ 
+                if (trim(substr($RawLine[3], 1))[0] == '!') {
+                    $this->Parameter['command'] = trim(substr($RawLine[3], 1));
+                } else {
+                    $this->Parameter['command'] = '!' . trim(substr($RawLine[3], 1));
+                }
+                 echo $this->Parameter['command'] . ' = ' . trim(substr($RawLine[3], 1))[0];
+            } else {
+                $this->Parameter['location'] = $RawLine[2];
+                $this->Parameter['command'] = trim(substr($RawLine[3], 1));
+            }
+        }
+        if (!empty($this->Parameter['command'])) {
+            $ExplodingPar = explode($RawLine[3], $this->BotData);
+            $this->Parameter['parameters'] = $ExplodingPar[1];
+        }
     }
     
     /**
