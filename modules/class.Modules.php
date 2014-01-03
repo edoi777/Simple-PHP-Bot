@@ -26,6 +26,9 @@ class Modules {
                 $Parent->PrivateMessage($Parent->Parameter['location'], 'Please enter an module name.');
             }
             else {
+                if (file_exists($Parent->BotConfig['modulepath'] . 'class.' . trim($Args[1]) . '.php')) {
+                   // die('it exists...');
+                }
                 if (!$Parent->ModuleSystem->LoadModule($Parent, $Args[1])) {
                     $Parent->PrivateMessage($Parent->Parameter['location'], 'Module ' . trim($Args[1]) . ' could not be found.');
                 }
@@ -78,6 +81,15 @@ class Modules {
             else {
                 $Parent->ModuleSystem->UnloadModule($Parent, $Args[1]);
             }
+        }
+        else {
+            $Parent->PrivateMessage($Parent->Parameter['location'], 'Not enough clearence.');
+        }
+    }
+    
+    public function CmdViewLoadedModules ($Parent, $Args = null) {
+        if ($Parent->SecurityClearance->HasSecurityClearance($Parent, 'CmdViewLoadedModules', 'oper', $Parent->Parameter['hostmask']['nickname'])) {
+            $Parent->PrivateMessage($Parent->Parameter['location'], 'The following modules are loaded: N/O');
         }
         else {
             $Parent->PrivateMessage($Parent->Parameter['location'], 'Not enough clearence.');

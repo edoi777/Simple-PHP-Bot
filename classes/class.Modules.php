@@ -46,6 +46,7 @@ class Modules {
             $Parent->Modules[$UniqId] = new $UniqId($this);
                     
             $Parent->Temp = $UniqId;
+            return true;
         }
         else {
             return false;

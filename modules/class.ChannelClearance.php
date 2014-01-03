@@ -8,10 +8,10 @@
  */
 
 class ChannelClearance {
-    public function AddUserClearance($Parent, $Args = null) {
+    public function AddClearance($Parent, $Args = null) {
         if ($this->is_channel($Args[1])) {
-            if ($Parent->SecurityClearance->HasChannelClearance($Parent, 'AddUserClearance', 'chan', $Parent->Parameter['hostmask']['nickname'], $Parent->Parameter['location'])) {
-                
+            if ($Parent->SecurityClearance->HasChannelClearance($Parent, 'AddClearance', 'chan', $Parent->Parameter['hostmask']['nickname'], $Parent->Parameter['location'])) {
+                $Parent->PrivateMessage($Parent->Parameter['location'], 'Build mode...');
             }
             else {
                 $Parent->PrivateMessage($Parent->Parameter['location'], 'Not enough clearence.');

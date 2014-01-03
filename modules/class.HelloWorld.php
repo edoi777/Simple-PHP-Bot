@@ -46,11 +46,11 @@ class HelloWorld {
     
     public function UserAccess($Parent, $Args = null) {
         if ($Args[1]) {
-            $Parent->PrivateMessage($Parent->Parameter['location'], 'The user ' . trim($Args[1]) . ' has an security clearence of: ' 
+            $Parent->PrivateMessage($Parent->Parameter['location'], 'The user ' . trim($Args[1]) . ' has an security clearance of: ' 
             . $Parent->SecurityClearance->GetClearanceOfUser($Parent, trim($Args[1])));
         }
         else {
-            $Parent->PrivateMessage($Parent->Parameter['location'], 'Security clearence of: ' 
+            $Parent->PrivateMessage($Parent->Parameter['location'], 'Security clearance of: ' 
             . $Parent->SecurityClearance->GetClearanceOfUser($Parent, $Parent->Parameter['hostmask']['nickname']));
         }
     }

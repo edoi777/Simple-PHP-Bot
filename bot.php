@@ -1,5 +1,5 @@
 ﻿<?php
-
+        
 /**
  * @filesource bot.php
  * @version 0.2-alpha
@@ -8,7 +8,8 @@
  * 
  * @usage Basic IRC Bot class
  */
-
+ini_set('max_execution_time', 0);
+        
 Class ViiIrcBot {
     
     /**
@@ -95,7 +96,7 @@ Class ViiIrcBot {
      
     public $Modules = array();
 
-        
+    
     /**
      * @name    ViiIrcBot::__construct
      * @param   void
@@ -280,9 +281,11 @@ Class ViiIrcBot {
     protected function DefineRawLine($RawLine) {
         $this->Parameter['hostmask'] = $RawLine[0];
         $this->Parameter['servercmd'] = $RawLine[1];
-        $this->Parameter['location'] = $RawLine[2];
-        $this->Parameter['command'] = trim(substr($RawLine[3], 1));
-                
+        
+        if ($RawLine[2] != '') {
+            $this->Parameter['location'] = $RawLine[2];
+            $this->Parameter['command'] = trim(substr($RawLine[3], 1));
+        }
         if (!empty($this->Parameter['command'])) {
             $ExplodingPar = explode($RawLine[3], $this->BotData);
             $this->Parameter['parameters'] = $ExplodingPar[1];
