@@ -308,7 +308,6 @@ Class ViiIrcBot {
                 } else {
                     $this->Parameter['command'] = '!' . trim(substr($RawLine[3], 1));
                 }
-                 echo $this->Parameter['command'] . ' = ' . trim(substr($RawLine[3], 1))[0];
             } else {
                 $this->Parameter['location'] = $RawLine[2];
                 $this->Parameter['command'] = trim(substr($RawLine[3], 1));
