@@ -2,7 +2,7 @@
 
 /**
  * @filesource bot.php
- * @version 0.1-alpha
+ * @version 0.2-alpha
  * @author Patrick Rennings
  * @copyright 2010
  * 
